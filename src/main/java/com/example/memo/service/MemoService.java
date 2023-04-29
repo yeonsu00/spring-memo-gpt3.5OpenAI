@@ -5,6 +5,8 @@ import com.example.memo.repository.MemoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MemoService {
     private final MemoRepository memoRepository;
@@ -24,5 +26,9 @@ public class MemoService {
 
     public Memo findOneMemo(String title) {
         return memoRepository.findByTitle(title);
+    }
+
+    public List<Memo> findAllMemo() {
+        return memoRepository.findAll();
     }
 }
