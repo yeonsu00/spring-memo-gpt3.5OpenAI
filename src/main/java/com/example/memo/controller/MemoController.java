@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -30,9 +31,9 @@ public class MemoController {
     }
 
     @PostMapping("/memo/read")
-    public String readMemo() {
-
-        return "read";
+    public List<Memo> readMemo() {
+        return memoService.findAllMemo();
+//        return "read";
     }
 
     @PostMapping("/memo/update")
