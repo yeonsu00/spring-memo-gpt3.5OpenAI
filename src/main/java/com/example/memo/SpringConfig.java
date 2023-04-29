@@ -9,15 +9,15 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SpringConfig {
 
-    private final MemoRepository memoRepository;
-
-    @Autowired
-    public SpringConfig(MemoRepository memoRepository) {
-        this.memoRepository = memoRepository;
-    }
-
-    @Bean
-    public MemoService memoService() {
-        return new MemoService(memoRepository);
-    }
+//    private final MemoRepository memoRepository;
+//
+//    @Autowired
+//    public SpringConfig(MemoRepository memoRepository) {
+//        this.memoRepository = memoRepository;
+//    }
+//
+//    @Bean
+//    public MemoService memoService() {
+//        return new MemoService(memoRepository);
+//    }
 }
