@@ -26,7 +26,7 @@ public class MemoController {
         String title = memo.get("title");
         String content = memo.get("content");
         Memo newMemo = new Memo(title, content);
-        memoService.create(newMemo);
+        memoService.createMemo(newMemo);
         return "create";
     }
 
@@ -43,8 +43,11 @@ public class MemoController {
     }
 
     @PostMapping("/memo/delete")
-    public String deleteMemo() {
-
+    public String deleteMemo(@RequestBody Map<String, String> memo) {
+        String title = memo.get("title");
+        String content = memo.get("content");
+        Memo newMemo = new Memo(title, content);
+        memoService.deleteMemo(newMemo);
         return "delete";
     }
 }

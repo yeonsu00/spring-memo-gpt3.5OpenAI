@@ -20,7 +20,7 @@ public class MemoService {
      * Create Memo
      * @param memo
      */
-    public Memo create(Memo memo) {
+    public Memo createMemo(Memo memo) {
         return memoRepository.save(memo);
     }
 
@@ -30,5 +30,9 @@ public class MemoService {
 
     public List<Memo> findAllMemo() {
         return memoRepository.findAll();
+    }
+
+    public void deleteMemo(Memo memo) {
+        memoRepository.delete(memo);
     }
 }
