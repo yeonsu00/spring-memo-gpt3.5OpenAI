@@ -16,16 +16,8 @@ public class MemoService {
         this.memoRepository = memoRepository;
     }
 
-    /**
-     * Create Memo
-     * @param memo
-     */
     public Memo createMemo(Memo memo) {
         return memoRepository.save(memo);
-    }
-
-    public Memo findOneMemo(String title) {
-        return memoRepository.findByTitle(title);
     }
 
     public List<Memo> findAllMemo() {
@@ -34,5 +26,14 @@ public class MemoService {
 
     public void deleteMemo(Memo memo) {
         memoRepository.delete(memo);
+    }
+
+    public Memo findMemoById(String id) {
+        return memoRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid memo Id:" + id));
+    }
+
+    public void update(Memo memo) {
+        memoRepository.save(memo);
     }
 }
