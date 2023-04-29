@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -36,7 +37,7 @@ public class MemoServiceTest {
         when(memoRepository.save(memo)).thenReturn(memo);
 
         // Call the create method of the memoService
-        Memo createdMemo = memoService.create(memo);
+        Memo createdMemo = memoService.createMemo(memo);
 
         // Assert that the createdMemo object is not null
         assertEquals(memo, createdMemo);
@@ -54,6 +55,20 @@ public class MemoServiceTest {
         assertEquals("Test Memo 1", result.get(0).getTitle());
         assertEquals("Test content 2", result.get(1).getContent());
         assertEquals("Test Memo 3", result.get(2).getTitle());
+    }
+
+    @Test
+    public void testDeleteMemo() {
+        // Given
+        Memo memoToDelete = new Memo("Test Memo", "This is a test memo to be deleted");
+        memoService.createMemo(memoToDelete);
+
+        // When
+        memoService.createMemo(memoToDelete);
+
+        // Then
+        List<Memo> allMemos = memoService.findAllMemo();
+        assertFalse(allMemos.contains(memoToDelete));
     }
 
 }
