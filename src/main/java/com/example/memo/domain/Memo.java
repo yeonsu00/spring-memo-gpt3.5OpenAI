@@ -13,12 +13,12 @@ import javax.persistence.Id;
 public class Memo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id;
 
     private String title;
     private String content;
 
-    public Memo(Long id, String title, String content) {
+    public Memo(String id, String title, String content) {
         this.id = id;
         this.title = title;
         this.content = content;
