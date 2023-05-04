@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Form Example2</title>
+</head>
+<body>
+<h1>Enter your details</h1>
+<form method="post" action="/memo/create">
+  <label for="name">Title:</label>
+  <input type="text" id="name" name="name" required><br><br>
+  <label for="message">Content:</label><br>
+  <textarea id="message" name="message" rows="5" cols="30" required></textarea><br><br>
+
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html>
