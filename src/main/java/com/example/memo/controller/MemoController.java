@@ -60,5 +60,6 @@ public class MemoController {
         Memo newMemo = new Memo(title, content);
         memoService.deleteMemo(newMemo);
         return "delete";
+
     }
 }
