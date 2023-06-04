@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Getter @Setter
 @Entity
@@ -17,6 +18,7 @@ public class Memo {
 
     private String title;
     private String content;
+    private Date date;
 
     public Memo(Long id, String title, String content) {
         this.id = id;
@@ -24,9 +26,10 @@ public class Memo {
         this.content = content;
     }
 
-    public Memo(String title, String content) {
+    public Memo(String title, String content, Date date) {
         this.title = title;
         this.content = content;
+        this.date = date;
     }
 
     public Memo() {
