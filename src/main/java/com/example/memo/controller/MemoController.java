@@ -58,10 +58,8 @@ public class MemoController {
 
     @PostMapping("/memo/delete")
     public String deleteMemo(@RequestBody Map<String, String> memo) {
-        String title = memo.get("title");
-        String content = memo.get("content");
-        Memo newMemo = new Memo(title, content);
-        memoService.deleteMemo(newMemo);
+        String memoId = memo.get("memoId");
+        memoService.deleteMemo(memoId);
         return "delete";
 
     }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MemoService {
@@ -24,8 +25,9 @@ public class MemoService {
         return memoRepository.findAll();
     }
 
-    public void deleteMemo(Memo memo) {
-        memoRepository.delete(memo);
+    public void deleteMemo(String memoId) {
+        Optional<Memo> deleteMemo = memoRepository.findById(memoId);
+        deleteMemo.ifPresent(memoRepository::delete);
     }
 
     public Memo findMemoById(String id) {
