@@ -3,14 +3,12 @@ package com.example.memo.controller;
 import com.example.memo.domain.Memo;
 import com.example.memo.service.MemoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -46,13 +44,13 @@ public class MemoController {
     @PostMapping("/memo/update")
     public String updateMemo(@RequestBody Map<String, String> memo) {
         String id = memo.get("id");
-        String title = memo.get("title");
-        String content = memo.get("content");
+        String updateTitle = memo.get("updateTitle");
+        String updateContent = memo.get("updateContent");
 
         // 기존 메모를 가져와서 업데이트
         Memo existingMemo = memoService.findMemoById(id);
-        existingMemo.setTitle(title);
-        existingMemo.setContent(content);
+        existingMemo.setTitle(updateTitle);
+        existingMemo.setContent(updateContent);
 
         // 업데이트된 메모 저장
         memoService.update(existingMemo);
