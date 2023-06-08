@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/gpt")
 public class GPTController {
-    String qreQuestion = "hi gpt!";
+    String qreQuestion = "\n위의 문장을 교정해줘.";
     private final ChatService chatService;
 
     // 질문을 입력하고 답변을 받는다
     @PostMapping("/askGPT")
     public String test(@RequestBody String question){
-        String resultQuestion = qreQuestion + question;
+        String resultQuestion = question + qreQuestion;
         return chatService.getGPTAnswer(resultQuestion);
     }
 }
