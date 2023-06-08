@@ -10,8 +10,7 @@ public class ChatService {
 
     private final ChatgptService chatgptService;
 
-    public String getChatResponse(String prompt) {
-        return chatgptService.sendMessage(prompt);
+    public String getGPTAnswer(String resultQuestion) {
+        return chatgptService.sendMessage(resultQuestion);
     }
-
 }
