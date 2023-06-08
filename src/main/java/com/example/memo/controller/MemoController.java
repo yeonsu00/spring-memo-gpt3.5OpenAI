@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +28,9 @@ public class MemoController {
     public String createMemo(@RequestBody Map<String, String> memo) {
         String title = memo.get("title");
         String content = memo.get("content");
-        Date date = new Date();
+        String dateString = memo.get("date");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(dateString, formatter);
         System.out.println(date);
         Memo newMemo = new Memo(title, content, date);
         memoService.createMemo(newMemo);
