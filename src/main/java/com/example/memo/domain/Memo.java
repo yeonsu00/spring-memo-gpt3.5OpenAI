@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter @Setter
@@ -19,7 +20,7 @@ public class Memo {
 
     private String title;
     private String content;
-    private LocalDate date;
+    private LocalDateTime date;
 
     public Memo(Long id, String title, String content) {
         this.id = id;
@@ -27,7 +28,7 @@ public class Memo {
         this.content = content;
     }
 
-    public Memo(String title, String content, LocalDate date) {
+    public Memo(String title, String content, LocalDateTime date) {
         this.title = title;
         this.content = content;
         this.date = date;
