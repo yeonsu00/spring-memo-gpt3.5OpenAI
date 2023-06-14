@@ -21,14 +21,14 @@ public class MemoController {
     }
 
     @PostMapping("/memo/create")
-    public String createMemo(@RequestBody Map<String, String> memo) {
+    public boolean createMemo(@RequestBody Map<String, String> memo) {
         String title = memo.get("title");
         String content = memo.get("content");
         LocalDateTime dateTime = LocalDateTime.now(); // 현재 날짜와 시간을 가져옴
         System.out.println(dateTime);
         Memo newMemo = new Memo(title, content, dateTime);
         memoService.createMemo(newMemo);
-        return "create";
+        return true;
     }
 
     @PostMapping("/memo/read")
@@ -38,7 +38,7 @@ public class MemoController {
     }
 
     @PostMapping("/memo/update")
-    public String updateMemo(@RequestBody Map<String, String> memo) {
+    public boolean updateMemo(@RequestBody Map<String, String> memo) {
         String id = memo.get("id");
         String updateTitle = memo.get("updateTitle");
         String updateContent = memo.get("updateContent");
@@ -51,14 +51,13 @@ public class MemoController {
         // 업데이트된 메모 저장
         memoService.update(existingMemo);
 
-        return "update";
+        return true;
     }
 
     @PostMapping("/memo/delete")
-    public String deleteMemo(@RequestBody Map<String, String> memo) {
+    public boolean deleteMemo(@RequestBody Map<String, String> memo) {
         String memoId = memo.get("memoId");
         memoService.deleteMemo(memoId);
-        return "delete";
-
+        return true;
     }
 }
