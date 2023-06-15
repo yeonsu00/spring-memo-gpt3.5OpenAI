@@ -57,7 +57,6 @@ public class MemoController {
     @PostMapping("/memo/delete")
     public boolean deleteMemo(@RequestBody Map<String, String> memo) {
         String memoId = memo.get("memoId");
-        memoService.deleteMemo(memoId);
-        return true;
+        return memoService.deleteMemo(memoId);
     }
 }

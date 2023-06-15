@@ -25,9 +25,10 @@ public class MemoService {
         return memoRepository.findAll();
     }
 
-    public void deleteMemo(String memoId) {
+    public boolean deleteMemo(String memoId) {
         Optional<Memo> deleteMemo = memoRepository.findById(memoId);
         deleteMemo.ifPresent(memoRepository::delete);
+        return true;
     }
 
     public Memo findMemoById(String id) {
