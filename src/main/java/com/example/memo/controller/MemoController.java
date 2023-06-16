@@ -49,9 +49,7 @@ public class MemoController {
         existingMemo.setContent(updateContent);
 
         // 업데이트된 메모 저장
-        memoService.update(existingMemo);
-
-        return true;
+        return memoService.update(existingMemo);
     }
 
     @PostMapping("/memo/delete")

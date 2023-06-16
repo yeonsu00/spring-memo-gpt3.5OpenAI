@@ -36,7 +36,8 @@ public class MemoService {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid memo Id:" + id));
     }
 
-    public void update(Memo memo) {
+    public boolean update(Memo memo) {
         memoRepository.save(memo);
+        return true;
     }
 }
