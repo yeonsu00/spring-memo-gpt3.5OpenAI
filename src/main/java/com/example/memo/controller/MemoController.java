@@ -22,13 +22,18 @@ public class MemoController {
 
     @PostMapping("/memo/create")
     public boolean createMemo(@RequestBody Map<String, String> memo) {
-        String title = memo.get("title");
-        String content = memo.get("content");
-        LocalDateTime dateTime = LocalDateTime.now(); // 현재 날짜와 시간을 가져옴
-        System.out.println(dateTime);
-        Memo newMemo = new Memo(title, content, dateTime);
-        memoService.createMemo(newMemo);
-        return true;
+        try {
+            String title = memo.get("title");
+            String content = memo.get("content");
+            LocalDateTime dateTime = LocalDateTime.now(); // 현재 날짜와 시간을 가져옴
+            System.out.println(dateTime);
+            Memo newMemo = new Memo(title, content, dateTime);
+            memoService.createMemo(newMemo);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @PostMapping("/memo/read")
