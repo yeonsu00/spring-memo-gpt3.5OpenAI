@@ -21,25 +21,27 @@ public class MemoController {
     }
 
     @PostMapping("/memo/create")
-    public boolean createMemo(@RequestBody Map<String, String> memo) {
+    public String createMemo(@RequestBody Map<String, String> memo) {
         try {
             String title = memo.get("title");
             String content = memo.get("content");
+            if (title == null || content == null) {
+                throw new IllegalArgumentException("title이나 content는 null이 될 수 없음");
+            }
             LocalDateTime dateTime = LocalDateTime.now(); // 현재 날짜와 시간을 가져옴
             System.out.println(dateTime);
             Memo newMemo = new Memo(title, content, dateTime);
             memoService.createMemo(newMemo);
-            return true;
+            return "true";
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return "오류 메시지: " + e.getMessage();
         }
     }
 
     @PostMapping("/memo/read")
     public List<Memo> readMemo() {
         return memoService.findAllMemo();
-//        return "read";
     }
 
     @PostMapping("/memo/update")
