@@ -25,29 +25,29 @@ public class MemoService {
         return memoRepository.findAll();
     }
 
-    public boolean deleteMemo(String memoId) {
+    public String deleteMemo(Long memoId) {
         try {
-            Optional<Memo> deleteMemo = memoRepository.findById(memoId);
+            Optional<Memo> deleteMemo = memoRepository.findByMemoId(memoId);
             deleteMemo.ifPresent(memoRepository::delete);
-            return true;
+            return "delete";
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return "delete 오류 메시지: " + e.getMessage();
         }
     }
 
-    public Memo findMemoById(String id) {
-        return memoRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid memo Id:" + id));
+    public Memo findMemoById(Long memoId) {
+        return memoRepository.findByMemoId(memoId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid memo Id:" + memoId));
     }
 
-    public boolean update(Memo memo) {
+    public String update(Memo memo) {
         try {
             memoRepository.save(memo);
-            return true;
+            return "update";
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return "update 오류 메시지: " + e.getMessage();
         }
     }
 }

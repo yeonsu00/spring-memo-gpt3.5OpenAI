@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class Memo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long memoId;
 
     @Column(nullable = false)
     private String title;
@@ -20,8 +20,8 @@ public class Memo {
     @Column(nullable = false)
     private LocalDateTime date;
 
-    public Memo(Long id, String title, String content) {
-        this.id = id;
+    public Memo(Long memoId, String title, String content) {
+        this.memoId = memoId;
         this.title = title;
         this.content = content;
     }
