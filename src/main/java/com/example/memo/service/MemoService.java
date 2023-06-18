@@ -26,9 +26,14 @@ public class MemoService {
     }
 
     public boolean deleteMemo(String memoId) {
-        Optional<Memo> deleteMemo = memoRepository.findById(memoId);
-        deleteMemo.ifPresent(memoRepository::delete);
-        return true;
+        try {
+            Optional<Memo> deleteMemo = memoRepository.findById(memoId);
+            deleteMemo.ifPresent(memoRepository::delete);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public Memo findMemoById(String id) {
@@ -37,7 +42,12 @@ public class MemoService {
     }
 
     public boolean update(Memo memo) {
-        memoRepository.save(memo);
-        return true;
+        try {
+            memoRepository.save(memo);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
