@@ -2,6 +2,8 @@ package com.example.memo.controller;
 
 import com.example.memo.service.ChatService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +18,14 @@ public class GPTController {
 
     // 질문을 입력하고 답변을 받는다
     @PostMapping("/askGPT")
-    public String test(@RequestBody String question){
-        String resultQuestion = question + qreQuestion;
-        return chatService.getGPTAnswer(resultQuestion);
+    public ResponseEntity<String> questionCorrection(@RequestBody String question) {
+        try {
+            String resultQuestion = question + qreQuestion;
+            String answer = chatService.getGPTAnswer(resultQuestion);
+            return ResponseEntity.ok(answer);
+        } catch (Exception e) {
+            String errorMessage = "오류 메시지: ";
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
+        }
     }
 }
