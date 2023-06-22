@@ -3,8 +3,10 @@ package com.example.memo.controller;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -35,8 +37,12 @@ public class GPTController {
 //        }
 //    }
 
+    @Value("${chatgpt.api-key}")
+    private String key;
+
     @PostMapping("/send")
-    public ResponseEntity send(String message) {
+    public ResponseEntity send(@RequestBody String message) {
+
         RestTemplate restTemplate = new RestTemplate();
 
         URI uri = UriComponentsBuilder
@@ -46,10 +52,11 @@ public class GPTController {
                 .toUri();
 
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Authorization", "Bearer " + "key");
+        httpHeaders.add("Authorization", "Bearer " + key);
 
         ArrayList<Message> list = new ArrayList<>();
-        list.add(new Message("user",message));
+
+        list.add(new Message("user","너가 해결책을 알려주는 사람이라면 내가 " + message +"라고 했을 때 뭐라고 할꺼야? 해결책을 알려주는 사람처럼 말해줘"));
 
 
         Body body = new Body("gpt-3.5-turbo", list);
